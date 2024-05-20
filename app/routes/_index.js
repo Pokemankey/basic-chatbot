@@ -25,14 +25,18 @@ export default function Index() {
     const userMessage = { sender: 'user', text: input };
     setMessages([...messages, userMessage]);
     setInput('');
-
+    var query = input
+    const payload = { query };
+    console.log(api_url);
+    console.log(query);
+    console.log(payload);
     try {
       const response = await fetch(api_url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ query: input }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
