@@ -23,7 +23,9 @@ export default function Index({rag}) {
     setMessages([...messages, userMessage]);
     setInput('');
 
+    console.log(rag);
     try {
+      
       const response = await fetch(rag, {
         method: 'POST',
         headers: {
