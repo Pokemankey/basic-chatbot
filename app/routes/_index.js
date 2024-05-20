@@ -7,8 +7,13 @@ export function meta() {
     ];
 }
 
+export const loader = async ({context}) => {
+  const rag = context.env.RAG_API_URL;
+  console.log(rag);
+};
+
 export default function Index() {
-    const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
   const sendMessage = async () => {
