@@ -1,3 +1,4 @@
+import { useLoaderData } from '@remix-run/react';
 import React, { useState } from 'react';
 
 export function meta() {
@@ -7,15 +8,14 @@ export function meta() {
     ];
 }
 
-var api_url = ""
-
 export const loader = async ({context}) => {
   const rag = context.env.RAG_API_URL;
-  api_url = rag
-  return null
+  return {rag}
 };
 
 export default function Index() {
+  const data = useLoaderData()
+  const api_url = data.rag
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
