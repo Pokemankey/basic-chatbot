@@ -7,6 +7,10 @@ export function meta() {
     ];
 }
 
+export const loader = async ({context}) => {
+  const rag_url = context.env.RAG_API_URL;
+};
+
 export default function Index() {
     const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
@@ -19,7 +23,7 @@ export default function Index() {
     setInput('');
 
     try {
-      const response = await fetch('http://localhost:8888/llm-query/', {
+      const response = await fetch(rag_url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
