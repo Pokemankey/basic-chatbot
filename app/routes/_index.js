@@ -7,12 +7,15 @@ export function meta() {
     ];
 }
 
+var api_url = ""
+
 export const loader = async ({context}) => {
   const rag = context.env.RAG_API_URL;
-  return {rag}
+  api_url = rag
+  return null
 };
 
-export default function Index({rag}) {
+export default function Index() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
@@ -23,10 +26,8 @@ export default function Index({rag}) {
     setMessages([...messages, userMessage]);
     setInput('');
 
-    console.log(rag);
     try {
-      
-      const response = await fetch(rag, {
+      const response = await fetch(api_url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
