@@ -37,7 +37,7 @@ export default async function handleRequest(
   }
 
   responseHeaders.set('Content-Type', 'text/html');
-  responseHeaders.set('Content-Security-Policy', header);
+  responseHeaders.set('Content-Security-Policy', `${header}; connect-src 'self' https://monorail-edge.shopifysvc.com https://testing.raen.ai`);
   return new Response(body, {
     headers: responseHeaders,
     status: responseStatusCode,
