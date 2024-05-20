@@ -13,8 +13,7 @@ export const loader = async ({context}) => {
   return null
 };
 
-export default function Index({context}) {
-  const rag = context.env.RAG_API_URL;
+export default function Index() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
