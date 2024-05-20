@@ -10,7 +10,7 @@ export function meta() {
 export const loader = async ({context}) => {
   const rag = context.env.RAG_API_URL;
   console.log(rag);
-  return
+  return null
 };
 
 export default function Index({context}) {
