@@ -15,7 +15,13 @@ export default async function handleRequest(
   responseHeaders,
   remixContext,
 ) {
-  const {nonce, header, NonceProvider} = createContentSecurityPolicy();
+  const {nonce, header, NonceProvider} = createContentSecurityPolicy({
+    connectSrc: [
+      "'self'",
+      'https://testing.raen.ai/llm-query',
+      'https://monorail-edge.shopifysvc.com'
+    ],
+  });
 
   const body = await renderToReadableStream(
     <NonceProvider>
@@ -37,7 +43,7 @@ export default async function handleRequest(
   }
 
   responseHeaders.set('Content-Type', 'text/html');
-  responseHeaders.set('Content-Security-Policy', `${header}; connect-src 'self' https://monorail-edge.shopifysvc.com https://testing.raen.ai`);
+  responseHeaders.set('Content-Security-Policy', );
   return new Response(body, {
     headers: responseHeaders,
     status: responseStatusCode,
